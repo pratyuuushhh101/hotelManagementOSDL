@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.hotel.controller.MainController"
+            stylesheets="@../css/style.css"
+            prefWidth="1200" prefHeight="750">
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="⌂ Dashboard">
+                <fx:include fx:id="dashboard" source="dashboard.fxml"/>
+            </Tab>
+            <Tab text="🛏 Rooms">
+                <fx:include fx:id="rooms" source="rooms.fxml"/>
+            </Tab>
+            <Tab text="👤 Customers">
+                <fx:include fx:id="customers" source="customers.fxml"/>
+            </Tab>
+            <Tab text="📋 Bookings">
+                <fx:include fx:id="bookings" source="bookings.fxml"/>
+            </Tab>
+            <Tab text="💰 Billing">
+                <fx:include fx:id="billing" source="billing.fxml"/>
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>

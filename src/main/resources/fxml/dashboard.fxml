@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hotel.controller.DashboardController"
+      styleClass="content-area" spacing="20">
+    <padding>
+        <Insets top="30" bottom="30" left="30" right="30"/>
+    </padding>
+
+    <Label text="Welcome to Hotel Manager" styleClass="welcome-label"/>
+    <Label text="Overview of your hotel operations at a glance" styleClass="subtitle-label"/>
+
+    <HBox fx:id="cardsBox" spacing="20" alignment="CENTER_LEFT">
+        <!-- Dashboard cards will be injected programmatically -->
+    </HBox>
+
+    <Separator/>
+
+    <Label text="Recent Bookings" styleClass="section-title"/>
+    <TableView fx:id="recentBookingsTable" prefHeight="250"
+               VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colBookingId" text="Booking ID" prefWidth="140"/>
+            <TableColumn fx:id="colCustomer" text="Customer" prefWidth="180"/>
+            <TableColumn fx:id="colRoom" text="Room" prefWidth="80"/>
+            <TableColumn fx:id="colCheckIn" text="Check-In" prefWidth="120"/>
+            <TableColumn fx:id="colCheckOut" text="Check-Out" prefWidth="120"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="No bookings yet"/>
+        </placeholder>
+    </TableView>
+</VBox>

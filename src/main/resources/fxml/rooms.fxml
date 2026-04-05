@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hotel.controller.RoomController"
+      styleClass="content-area" spacing="16">
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <Label text="Room Management" styleClass="section-title"/>
+
+    <!-- Add/Edit Room Form -->
+    <GridPane styleClass="form-grid" hgap="12" vgap="10">
+        <Label text="Room Number:" styleClass="form-label"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="roomNumberField" promptText="e.g. 101"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label fx:id="roomNumberError" styleClass="error-label" text=""
+               GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <Label text="Room Type:" styleClass="form-label"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="roomTypeCombo" promptText="Select type"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label fx:id="roomTypeError" styleClass="error-label" text=""
+               GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <Label text="Price / Day (₹):" styleClass="form-label"
+               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="priceField" promptText="e.g. 2500.00"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label fx:id="priceError" styleClass="error-label" text=""
+               GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+        <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <Button fx:id="addRoomBtn" text="➕ Add Room" onAction="#handleAddRoom">
+                <tooltip><Tooltip text="Add a new room to the hotel"/></tooltip>
+            </Button>
+            <Button fx:id="updateRoomBtn" text="✏ Update" onAction="#handleUpdateRoom"
+                    styleClass="btn-secondary">
+                <tooltip><Tooltip text="Update the selected room's details"/></tooltip>
+            </Button>
+            <Button fx:id="clearBtn" text="✖ Clear" onAction="#handleClear"
+                    styleClass="btn-secondary">
+                <tooltip><Tooltip text="Clear all form fields"/></tooltip>
+            </Button>
+        </HBox>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Search and Filter -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="🔍 Search rooms..."
+                   styleClass="search-field"/>
+        <ToggleButton fx:id="filterAvailableBtn" text="Show Available Only"
+                      onAction="#handleFilterToggle">
+            <tooltip><Tooltip text="Toggle to show only available rooms"/></tooltip>
+        </ToggleButton>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="deleteRoomBtn" text="🗑 Delete" onAction="#handleDeleteRoom"
+                styleClass="btn-danger">
+            <tooltip><Tooltip text="Delete the selected room"/></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- Rooms Table -->
+    <TableView fx:id="roomsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colRoomNumber" text="Room #" prefWidth="100"/>
+            <TableColumn fx:id="colRoomType" text="Type" prefWidth="120"/>
+            <TableColumn fx:id="colPrice" text="Price/Day (₹)" prefWidth="140"/>
+            <TableColumn fx:id="colAvailable" text="Available" prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="No rooms added yet. Use the form above to add rooms."/>
+        </placeholder>
+    </TableView>
+</VBox>

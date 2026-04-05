@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hotel.controller.CustomerController"
+      styleClass="content-area" spacing="16">
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <Label text="Customer Management" styleClass="section-title"/>
+
+    <!-- Add/Edit Customer Form -->
+    <GridPane styleClass="form-grid" hgap="12" vgap="10">
+        <Label text="Name:" styleClass="form-label"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="nameField" promptText="Full name"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label fx:id="nameError" styleClass="error-label" text=""
+               GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <Label text="Contact:" styleClass="form-label"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="contactField" promptText="+919876543210"
+                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label fx:id="contactError" styleClass="error-label" text=""
+               GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <Label text="Email:" styleClass="form-label"
+               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" promptText="email@example.com"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label fx:id="emailError" styleClass="error-label" text=""
+               GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+        <Label text="Address:" styleClass="form-label"
+               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="addressField" promptText="Full address"
+                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label fx:id="addressError" styleClass="error-label" text=""
+               GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+
+        <HBox spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <Button fx:id="addCustomerBtn" text="➕ Add Customer" onAction="#handleAddCustomer">
+                <tooltip><Tooltip text="Add a new customer record"/></tooltip>
+            </Button>
+            <Button fx:id="updateCustomerBtn" text="✏ Update" onAction="#handleUpdateCustomer"
+                    styleClass="btn-secondary">
+                <tooltip><Tooltip text="Update the selected customer's details"/></tooltip>
+            </Button>
+            <Button fx:id="clearBtn" text="✖ Clear" onAction="#handleClear"
+                    styleClass="btn-secondary">
+                <tooltip><Tooltip text="Clear all form fields"/></tooltip>
+            </Button>
+        </HBox>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Search -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="🔍 Search by name or contact..."
+                   styleClass="search-field"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="deleteCustomerBtn" text="🗑 Delete" onAction="#handleDeleteCustomer"
+                styleClass="btn-danger">
+            <tooltip><Tooltip text="Delete the selected customer"/></tooltip>
+        </Button>
+    </HBox>
+
+    <!-- Customers Table -->
+    <TableView fx:id="customersTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="180"/>
+            <TableColumn fx:id="colContact" text="Contact" prefWidth="150"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colAddress" text="Address" prefWidth="220"/>
+        </columns>
+        <placeholder>
+            <Label text="No customers registered. Use the form above to add customers."/>
+        </placeholder>
+    </TableView>
+</VBox>

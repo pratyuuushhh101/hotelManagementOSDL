@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hotel.controller.BillingController"
+      styleClass="content-area" spacing="16">
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <Label text="Billing Management" styleClass="section-title"/>
+
+    <!-- Billing Controls -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="form-grid">
+        <Label text="Select Booking:" styleClass="form-label"/>
+        <ComboBox fx:id="bookingCombo" promptText="Select a booking" prefWidth="400"/>
+        <Button fx:id="generateBillBtn" text="📄 Generate Bill" onAction="#handleGenerateBill">
+            <tooltip><Tooltip text="Generate a detailed bill for the selected booking"/></tooltip>
+        </Button>
+        <Button fx:id="exportBillBtn" text="💾 Export as TXT" onAction="#handleExportBill"
+                styleClass="btn-secondary">
+            <tooltip><Tooltip text="Export the bill to a .txt file on disk"/></tooltip>
+        </Button>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Bill Preview -->
+    <Label text="Bill Preview" styleClass="section-title"/>
+    <TextArea fx:id="billPreview" editable="false" wrapText="true"
+              VBox.vgrow="ALWAYS"
+              style="-fx-font-family: 'Courier New', monospace; -fx-font-size: 13px;
+                     -fx-control-inner-background: #16162a; -fx-text-fill: #e0e0f0;"/>
+
+    <Separator/>
+
+    <!-- All Bookings for Billing -->
+    <Label text="All Bookings" styleClass="section-title"/>
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="🔍 Search bookings..."
+                   styleClass="search-field"/>
+    </HBox>
+    <TableView fx:id="billingTable" prefHeight="200" VBox.vgrow="SOMETIMES">
+        <columns>
+            <TableColumn fx:id="colBookingId" text="Booking ID" prefWidth="130"/>
+            <TableColumn fx:id="colCustomerName" text="Customer" prefWidth="160"/>
+            <TableColumn fx:id="colRoomNumber" text="Room #" prefWidth="80"/>
+            <TableColumn fx:id="colDays" text="Days" prefWidth="60"/>
+            <TableColumn fx:id="colTotal" text="Total (₹)" prefWidth="120"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="No billing records"/>
+        </placeholder>
+    </TableView>
+</VBox>

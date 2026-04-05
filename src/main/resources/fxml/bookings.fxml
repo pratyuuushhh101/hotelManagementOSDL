@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.hotel.controller.BookingController"
+      styleClass="content-area" spacing="16">
+    <padding>
+        <Insets top="20" bottom="20" left="20" right="20"/>
+    </padding>
+
+    <Label text="Booking Management" styleClass="section-title"/>
+
+    <!-- Booking Form -->
+    <GridPane styleClass="form-grid" hgap="12" vgap="10">
+        <Label text="Customer:" styleClass="form-label"
+               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="customerCombo" promptText="Select customer" prefWidth="280"
+                  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label fx:id="customerError" styleClass="error-label" text=""
+               GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+        <Label text="Room:" styleClass="form-label"
+               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="roomCombo" promptText="Select available room" prefWidth="280"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label fx:id="roomError" styleClass="error-label" text=""
+               GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <Label text="Check-In:" styleClass="form-label"
+               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="checkInPicker" promptText="Select check-in date" prefWidth="280"
+                    GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label fx:id="checkInError" styleClass="error-label" text=""
+               GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+
+        <Label text="Check-Out:" styleClass="form-label"
+               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="checkOutPicker" promptText="Select check-out date" prefWidth="280"
+                    GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label fx:id="checkOutError" styleClass="error-label" text=""
+               GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+
+        <HBox spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <Button fx:id="bookRoomBtn" text="📋 Book Room" onAction="#handleBookRoom">
+                <tooltip><Tooltip text="Create a new booking for the selected customer and room"/></tooltip>
+            </Button>
+            <Button fx:id="checkoutBtn" text="✅ Checkout" onAction="#handleCheckout"
+                    styleClass="btn-success">
+                <tooltip><Tooltip text="Mark the selected booking as checked out"/></tooltip>
+            </Button>
+            <Button fx:id="clearBtn" text="✖ Clear" onAction="#handleClear"
+                    styleClass="btn-secondary">
+                <tooltip><Tooltip text="Clear the booking form"/></tooltip>
+            </Button>
+        </HBox>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Search -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="🔍 Search bookings..."
+                   styleClass="search-field"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- Bookings Table -->
+    <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colBookingId" text="Booking ID" prefWidth="130"/>
+            <TableColumn fx:id="colCustomerName" text="Customer" prefWidth="160"/>
+            <TableColumn fx:id="colRoomNumber" text="Room #" prefWidth="80"/>
+            <TableColumn fx:id="colCheckIn" text="Check-In" prefWidth="120"/>
+            <TableColumn fx:id="colCheckOut" text="Check-Out" prefWidth="120"/>
+            <TableColumn fx:id="colTotal" text="Total (₹)" prefWidth="120"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="No bookings yet. Use the form above to create a booking."/>
+        </placeholder>
+    </TableView>
+</VBox>
