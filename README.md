@@ -125,6 +125,3 @@ The project follows strict separation of concerns:
 
 ---
 
-## License
-
-This project is provided for educational and demonstration purposes.
