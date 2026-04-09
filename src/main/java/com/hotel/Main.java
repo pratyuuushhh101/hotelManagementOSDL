@@ -47,7 +47,7 @@ public class Main extends Application {
                 Objects.requireNonNull(getClass().getResource("/css/style.css")).toExternalForm());
 
         // Configure stage
-        primaryStage.setTitle("🏨 Hotel Management System");
+        primaryStage.setTitle("Hotel Management System");
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(900);
         primaryStage.setMinHeight(600);

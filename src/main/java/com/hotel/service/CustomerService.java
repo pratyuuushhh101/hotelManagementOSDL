@@ -145,11 +145,14 @@ public class CustomerService {
         if (name == null || name.trim().isEmpty()) {
             throw new ValidationException("Customer name is required.");
         }
+        if (name.matches(".*\\d.*")) {
+            throw new ValidationException("Customer name cannot contain digits.");
+        }
         if (contactNumber == null || contactNumber.trim().isEmpty()) {
             throw new ValidationException("Contact number is required.");
         }
-        if (!contactNumber.trim().matches("\\+?[0-9]{7,15}")) {
-            throw new ValidationException("Invalid contact number format. Use 7-15 digits, optional leading +.");
+        if (!contactNumber.trim().matches("^[0-9]{10}$")) {
+            throw new ValidationException("Contact number must be exactly 10 digits.");
         }
         if (email == null || email.trim().isEmpty()) {
             throw new ValidationException("Email is required.");
